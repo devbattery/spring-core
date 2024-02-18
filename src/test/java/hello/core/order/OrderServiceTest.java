@@ -1,0 +1,32 @@
+package hello.core.order;
+
+import static org.assertj.core.api.Assertions.*;
+
+import hello.core.member.Grade;
+import hello.core.member.Member;
+import hello.core.member.MemberService;
+import hello.core.member.MemberServiceImpl;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+class OrderServiceTest {
+
+    private MemberService memberService = new MemberServiceImpl();
+    private OrderService orderService = new OrderServiceImpl();
+
+    @DisplayName("주문을 생성하여 VIP의 할인 금액이 1000원임을 확인할 수 있다.")
+    @Test
+    void createOrder() {
+        // given
+        long memberId = 1L;
+        Member member = new Member(memberId, "memberA", Grade.VIP);
+        memberService.join(member);
+
+        // when
+        Order order = orderService.createOrder(memberId, "itemA", 10000);
+
+        // then
+        assertThat(order.getDiscountPrice()).isEqualTo(1000);
+    }
+
+}
