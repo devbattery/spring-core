@@ -2,17 +2,26 @@ package hello.core.order;
 
 import static org.assertj.core.api.Assertions.*;
 
+import hello.core.AppConfig;
 import hello.core.member.Grade;
 import hello.core.member.Member;
 import hello.core.member.MemberService;
 import hello.core.member.MemberServiceImpl;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class OrderServiceTest {
 
-    private MemberService memberService = new MemberServiceImpl();
-    private OrderService orderService = new OrderServiceImpl();
+    private MemberService memberService;
+    private OrderService orderService;
+
+    @BeforeEach
+    public void beforeEach() {
+        AppConfig appConfig = new AppConfig();
+        memberService = appConfig.memberService();
+        orderService = appConfig.orderService();
+    }
 
     @DisplayName("주문을 생성하여 VIP의 할인 금액이 1000원임을 확인할 수 있다.")
     @Test
