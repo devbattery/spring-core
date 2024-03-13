@@ -38,7 +38,7 @@ class ApplicationContextExtendsFindTest {
         // then
         assertThat(rateDiscountPolicy).isInstanceOf(RateDiscountPolicy.class);
     }
-    
+
     @DisplayName("특정 하위 타입으로 조회할 수 있다.")
     @Test
     void find_bean_by_sub_type() {

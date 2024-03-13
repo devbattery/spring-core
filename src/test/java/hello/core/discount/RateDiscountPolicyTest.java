@@ -1,6 +1,6 @@
 package hello.core.discount;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import hello.core.member.Grade;
 import hello.core.member.Member;

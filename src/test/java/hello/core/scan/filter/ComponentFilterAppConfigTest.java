@@ -1,4 +1,4 @@
-package scan.filter;
+package hello.core.scan.filter;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;

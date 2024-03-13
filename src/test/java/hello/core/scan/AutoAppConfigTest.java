@@ -1,4 +1,4 @@
-package scan;
+package hello.core.scan;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

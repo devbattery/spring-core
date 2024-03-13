@@ -1,6 +1,6 @@
 package hello.core.member;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import hello.core.AppConfig;
 import org.junit.jupiter.api.BeforeEach;
