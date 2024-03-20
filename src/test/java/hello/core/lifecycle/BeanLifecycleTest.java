@@ -26,7 +26,7 @@ public class BeanLifecycleTest {
     @Configuration
     static class LifecycleConfig {
 
-        @Bean
+        @Bean(initMethod = "init", destroyMethod = "close")
         public NetworkClient networkClient() {
             NetworkClient networkClient = new NetworkClient();
             networkClient.setUrl("https://hello-spring.dev");
