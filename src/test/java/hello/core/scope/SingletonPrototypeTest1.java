@@ -4,9 +4,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
+import jakarta.inject.Provider;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.ObjectProvider;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Scope;
@@ -45,17 +48,20 @@ class SingletonPrototypeTest1 {
 
         // then
         assertThat(count1).isEqualTo(1);
-        assertThat(count2).isEqualTo(2);
+        assertThat(count2).isEqualTo(1);
     }
 
     @Scope("singleton")
-    @RequiredArgsConstructor
     static class ClientBean {
 
         // 생성 시점에 주입 -> 계속 같은 걸 씀 (싱글톤처럼)
-        private final PrototypeBean prototypeBean;
+//        private final PrototypeBean prototypeBean;
+
+        @Autowired
+        private Provider<PrototypeBean> prototypeBeanProvider;
 
         public int logic() {
+            PrototypeBean prototypeBean = prototypeBeanProvider.get();
             prototypeBean.addCount();
             return prototypeBean.getCount();
         }
